@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div>
+          <form id="search" class="search">
+            <input type="text" id="query" placeholder="Search..." />
+            <button>
+              <i class="fa-solid fa-magnifying-glass-location"></i>
+            </button>
+          </form>
+          <div class="weather-icon">
+            <img id="icon" src="sun.png" alt="" />
+          </div>
+
+          <div class="temperature">
+            <h1 id="temperature">0</h1>
+            <span class="temperatureUnit">°C</span>
+          </div>
+          <div class="detailed-conditions">
+            <div class="feels-like">
+              <span id="feels-like"> 0</span>
+              <span class="temperatureUnit">°C</span>
+            </div>
+            <div class="description">
+              <span>Conditions:</span>
+              <p id="description"></p>
+            </div>
+          </div>
+        </div>
+        <div class="location">
+          <div class="locationIcon">
+            <i class="fa-solid fa-map-pin"></i>
+          </div>
+          <div id="favourite">⭐</div>
+          <div class="locationText">
+            <p id="location">location</p>
+          </div>
+        </div>
+      </div>
+      <div class="weatherDetails">
+        <nav>
+          <ul class="options units">
+            <button class="celsius active">°C</button>
+            <button class="fahrenheit">°F</button>
+          </ul>
+
+          <div class="day-night">
+            <button id="night-mode">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+        </nav>
+
+        <div class="topCards" id="weather-cards"></div>
+        <div class="highlights">
+          <h2 class="heading">Today's highlights</h2>
+          <div class="cards">
+            <div class="cardDetails">
+              <h4 class="cardHeading">
+                UV Index <i class="fa-regular fa-sun"></i>
+              </h4>
+              <div class="content">
+                <p class="uv-index">0</p>
+                <p class="uv-text">Low</p>
+              </div>
+            </div>
+            <div class="cardDetails">
+              <h4 class="cardHeading">
+                Wind Status <i class="fa-solid fa-wind align-self-center"></i>
+              </h4>
+              <div class="content">
+                <p class="wind-speed">0</p>
+                <p>km/h</p>
+              </div>
+            </div>
+            <div class="cardDetails">
+              <h4 class="cardHeading">Sunrise & Sunset</h4>
+              <div class="content">
+                <p class="sun-rise">0</p>
+                <p class="sun-set">0</p>
+              </div>
+            </div>
+            <div class="cardDetails">
+              <h4 class="cardHeading">
+                Humidity <i class="fa-solid fa-water align-self-center"></i>
+              </h4>
+              <div class="content">
+                <p class="humidity">0</p>
+                <p class="humidity-status">Normal</p>
+              </div>
+            </div>
+            <div class="cardDetails">
+              <h4 class="cardHeading">
+                Visibility
+                <i class="fa-solid fa-eye-slash align-self-center"></i>
+              </h4>
+
+              <div class="content">
+                <p class="visibility">0</p>
+                <p class="visibility-status">Normal</p>
+              </div>
+            </div>
+            <div class="cardDetails">
+              <h4 class="cardHeading">
+                Pressure <i class="fa-solid fa-weight-scale"></i>
+              </h4>
+              <div class="content">
+                <p class="pressure">0</p>
+                <p>hPa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
