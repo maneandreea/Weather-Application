@@ -1,4 +1,3 @@
-localStorage.clear();
 // Dark Mode Triggered by Click
 const darkTheme = document.getElementById('night-mode');
 darkTheme.addEventListener('click', darkToLight);
