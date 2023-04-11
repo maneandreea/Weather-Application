@@ -4,7 +4,7 @@
   --containersBg: #f6f6f8;
   --highlightsBg: #f6f6f8;
   --textColor: #000;
-  --hoverBg: #192791;
+  --hoverBg: #afb7f3;
   --cardBg: #e7edfa;
 }
 
@@ -87,6 +87,7 @@ input {
   font-size: 14px;
   cursor: pointer;
 }
+
 .search button:hover {
   background-color: var(--hoverBg);
   border-color: var(--hoverBg);
@@ -123,9 +124,11 @@ input {
   padding-bottom: 2vh;
   color: var(--textColor);
 }
+
 .feels-like {
   padding-bottom: 2vh;
 }
+
 .location {
   display: flex;
   align-items: center;
@@ -143,6 +146,11 @@ input {
   font-weight: bold;
 }
 
+#picture {
+  width: 30px;
+  height: 30px;
+}
+
 /* WeatherDetails Styles */
 .weatherDetails {
   flex-basis: calc(100% - 320px);
@@ -155,6 +163,20 @@ input {
   color: var(--textColor);
   box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.15),
     -2px -2px 6px 1px rgba(0, 0, 0, 0.15);
+}
+
+#favorite {
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--containersBg);
+  margin-left: 1vh;
+  cursor: pointer;
+}
+
+#favorite:hover {
+  transform: scale(1.2);
 }
 
 nav {
@@ -198,7 +220,8 @@ nav {
 
 .card {
   background-color: var(--cardBg);
-  border: 1px solid #b5afaf;
+  border: 1px solid (145, 145, 145, 0.8);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
   padding: 1vh;
   border-radius: 10px;
   min-width: 7rem;
@@ -254,6 +277,21 @@ nav {
   justify-content: space-between;
   text-align: center;
 }
+
+.containerLocalStorage {
+  padding: 20px;
+  width: 39rem;
+  margin: 10px;
+  background-color: var(--cardBg);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.containerLocalStorage span {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   .container {
     padding: 8px;

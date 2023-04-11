@@ -1,3 +1,4 @@
+localStorage.clear();
 // Dark Mode Triggered by Click
 const darkTheme = document.getElementById('night-mode');
 darkTheme.addEventListener('click', darkToLight);
@@ -10,6 +11,7 @@ function darkToLight() {
   } else {
     localStorage.setItem('theme', 'light');
   }
+  localStorage.clear();
 }
 
 const temp = document.getElementById('temperature'),
@@ -32,7 +34,10 @@ const temp = document.getElementById('temperature'),
   celsiusBtn = document.querySelector('.celsius'),
   fahrenheitBtn = document.querySelector('.fahrenheit'),
   tempUnit = document.querySelectorAll('.temperatureUnit'),
-  weatherCards = document.querySelector('#weather-cards');
+  weatherCards = document.querySelector('#weather-cards'),
+  favorite = document.getElementById('favorite'),
+  favoriteContainer = document.getElementById('containerLocalStorage'),
+  img = document.getElementById('picture');
 
 let currentCity = '';
 let currentUnit = 'c';
@@ -58,7 +63,7 @@ getPublicIp();
 // function to get weather data
 function getWeatherData(city, unit) {
   fetch(
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=EJ6UBL2JEQGYB3AA4ENASN62J&contentType=json`,
+    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=YP9HDSWY4X3ZQM7NBSUHUS6ZA&contentType=json`,
     {
       method: 'GET',
       headers: {},
@@ -67,6 +72,7 @@ function getWeatherData(city, unit) {
     .then((response) => response.json())
     .then((data) => {
       let today = data.currentConditions;
+
       if (unit === 'c') {
         temp.innerText = Math.round(today.temp);
         feelsLikeTemp.innerText =
@@ -90,6 +96,12 @@ function getWeatherData(city, unit) {
       updateForecast(data.days, unit);
       sunRise.innerText = covertTimeTo12HourFormat(today.sunrise);
       sunSet.innerText = covertTimeTo12HourFormat(today.sunset);
+
+      if (localStorage.getItem(currentLocation.innerText) != null) {
+        img.src = 'filled.png';
+      } else {
+        img.src = 'unfilled.png';
+      }
     })
     .catch((err) => {
       alert('City not found☹️');
@@ -231,6 +243,30 @@ searchForm.addEventListener('submit', (e) => {
     getWeatherData(location, currentUnit);
   }
 });
+
+//function for changin star picture and updating the favorites container
+favorite.addEventListener('click', changeAndUpdate);
+function changeAndUpdate() {
+  if (img.src.match('unfilled.png')) {
+    img.src = 'filled.png';
+    localStorage.setItem(currentLocation.innerText, temp.innerText);
+  } else {
+    img.src = 'unfilled.png';
+    localStorage.removeItem(currentLocation.innerText);
+  }
+
+  for (let i = 0; i < localStorage.length; i++) {
+    // Get the key and value for each item
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    const paragraph = document.createElement('p');
+    paragraph.textContent = `${key}: ${value}`;
+    console.log(localStorage);
+    console.log(key);
+    favoriteContainer.append(paragraph);
+    localStorage.removeItem(key);
+  }
+}
 
 // function to convert celsius to fahrenheit
 function celsiusToFahrenheit(temp) {
