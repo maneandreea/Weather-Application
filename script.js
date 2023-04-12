@@ -1,4 +1,5 @@
 // Dark Mode Triggered by Click
+localStorage.clear();
 const darkTheme = document.getElementById('night-mode');
 darkTheme.addEventListener('click', darkToLight);
 
@@ -95,11 +96,10 @@ function getWeatherData(city, unit) {
       updateForecast(data.days, unit);
       sunRise.innerText = covertTimeTo12HourFormat(today.sunrise);
       sunSet.innerText = covertTimeTo12HourFormat(today.sunset);
-
       if (localStorage.getItem(currentLocation.innerText) != null) {
-        img.src = 'filled.png';
+        img.src = 'assets/filled.png';
       } else {
-        img.src = 'unfilled.png';
+        img.src = 'assets/unfilled.png';
       }
     })
     .catch((err) => {
@@ -243,15 +243,16 @@ searchForm.addEventListener('submit', (e) => {
   }
 });
 
-//function for changin star picture and updating the favorites container
+//function for changing star picture and updating the favorites container
 favorite.addEventListener('click', changeAndUpdate);
 function changeAndUpdate() {
-  if (img.src.match('unfilled.png')) {
-    img.src = 'filled.png';
+  if (img.src.match('assets/unfilled.png')) {
+    img.src = 'assets/filled.png';
     localStorage.setItem(currentLocation.innerText, temp.innerText);
   } else {
-    img.src = 'unfilled.png';
     localStorage.removeItem(currentLocation.innerText);
+    // favoriteContainer.innerHTML = '';
+    img.src = 'assets/unfilled.png';
   }
 
   for (let i = 0; i < localStorage.length; i++) {
@@ -260,8 +261,6 @@ function changeAndUpdate() {
     const value = localStorage.getItem(key);
     const paragraph = document.createElement('p');
     paragraph.textContent = `${key}: ${value}`;
-    console.log(localStorage);
-    console.log(key);
     favoriteContainer.append(paragraph);
     localStorage.removeItem(key);
   }
